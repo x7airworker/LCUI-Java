@@ -48,14 +48,17 @@ public class NativeString implements CharSequence, Comparable {
         if (wide) {
             int len = (string.length() + 1 ) * Native.WCHAR_SIZE;
             pointer = new Memory(len);
-            pointer.setString(0, string, "UTF-8");
-        }
-        else {
+            pointer.setWideString(0, string);
+        } else {
             byte[] data = Native.toByteArray(string);
             pointer = new Memory(data.length + 1);
             pointer.write(0, data, 0, data.length);
             pointer.setByte(data.length, (byte)0);
         }
+    }
+
+    public NativeString(int size) {
+        pointer = new Memory(size);
     }
 
     public int hashCode() {
@@ -78,6 +81,10 @@ public class NativeString implements CharSequence, Comparable {
 
     public Pointer getPointer() {
         return pointer;
+    }
+
+    public String getString() {
+        return pointer.getString(0);
     }
 
     public char charAt(int index) {

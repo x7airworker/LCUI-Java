@@ -63,6 +63,8 @@ public class Widget {
             return new TextEdit(lWidget);
         } else if (type.equals("textview")) {
             return new TextView(lWidget);
+        } else if (type.equals("button")) {
+            return new Button(lWidget);
         }
 
         return new Widget(lWidget);

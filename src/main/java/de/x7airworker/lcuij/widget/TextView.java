@@ -1,8 +1,7 @@
 package de.x7airworker.lcuij.widget;
 
 import de.x7airworker.lcuij.library.LCUI;
-
-import java.util.Arrays;
+import de.x7airworker.lcuij.library.NativeString;
 
 public class TextView extends Widget {
     protected TextView(LCUI.Widget handle) {
@@ -10,7 +9,7 @@ public class TextView extends Widget {
     }
 
     public void setText(final String text) {
-        char[] str = text.toCharArray();
-        LCUI.INSTANCE.TextView_SetTextW(handle, str);
+        NativeString ns = new NativeString(text, true);
+        LCUI.INSTANCE.TextView_SetTextW(handle, ns.getPointer());
     }
 }

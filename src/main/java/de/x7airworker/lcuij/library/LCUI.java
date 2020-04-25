@@ -20,11 +20,30 @@ public interface LCUI extends Library {
 
     Widget LCUIWidget_GetById(Pointer id);
 
+    void Button_SetTextW(Widget widget, Pointer wstr);
+    void Button_SetText(Widget widget, Pointer str);
+
+    void TextEdit_EnableStyleTag(Widget widget, boolean enable);
+    void TextEdit_EnableMultiline(Widget widget, boolean enable);
+    void TextEdit_MoveCaret(Widget widget, int row, int col);
     void TextEdit_ClearText(Widget widget);
     void TextEdit_GetTextW(Widget widget, Size_t start, Size_t end, Pointer buf);
     Size_t TextEdit_GetTextLength(Widget widget);
+    void TextEdit_SetCaretBlink(Widget widget, boolean visible, int time);
+    int TextEdit_SetTextW(Widget widget, Pointer wstr);
+    int TextEdit_SetText(Widget widget, Pointer utf8_str);
+    int TextEdit_AppendTextW(Widget widget, Pointer wstr);
+    int TextEdit_InsertTextW(Widget widget, Pointer wstr);
+    int TextEdit_SetPlaceHolderW(Widget widget, Pointer wstr);
+    int TextEdit_SetPlaceHolder(Widget widget, Pointer str);
+    void TextEdit_SetPasswordChar(Widget widget, char c);
 
-    void TextView_SetTextW(Widget widget, char[] str);
+    int TextView_SetTextW(Widget widget, Pointer str);
+    int TextView_SetText(Widget widget, Pointer utf8_text);
+    void TextView_SetLineHeight(Widget widget, int height);
+    void TextView_SetTextAlign(Widget widget, int align);
+    void TextView_SetAutoWrap(Widget widget, boolean enable);
+    void TextView_SetMulitiline(Widget widget, boolean enable);
 
     @Structure.FieldOrder({"hash", "state", "id", "type", "classes", "status", "title", "dicts", "disabled", "event_blocked", "layout_x", "layout_y", "x", "y", "width", "height", "max_content_width", "max_content_height"})
     final class Widget extends Structure {
